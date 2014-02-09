@@ -248,7 +248,7 @@ class EdifyGenerator(object):
 
   def SetPermissions(self, fn, uid, gid, mode, selabel, capabilities):
     """Set file ownership and permissions."""
-    if not self.info.get("use_set_metadata", False):
+    if not self.info.get("USE_SET_METADATA", False):
       self.script.append('set_perm(%d, %d, 0%o, "%s");' % (uid, gid, mode, fn))
     else:
       if capabilities is None: capabilities = "0x0"
@@ -261,7 +261,7 @@ class EdifyGenerator(object):
 
   def SetPermissionsRecursive(self, fn, uid, gid, dmode, fmode, selabel, capabilities):
     """Recursively set path ownership and permissions."""
-    if not self.info.get("use_set_metadata", False):
+    if not self.info.get("USE_SET_METADATA", False):
       self.script.append('set_perm_recursive(%d, %d, 0%o, 0%o, "%s");'
                          % (uid, gid, dmode, fmode, fn))
     else:
